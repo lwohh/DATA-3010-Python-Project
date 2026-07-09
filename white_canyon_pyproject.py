@@ -2,6 +2,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
+from scipy import stats as sp
+import statistics as stat
 
 GSS = pd.read_csv('C:/Users/canyon.white/OneDrive - Convergint/Documents/GitHub/DATA 3010 Python Project/GSSData_PythonProject_Sp2022.csv')
 
@@ -176,6 +179,67 @@ plt.xlabel('Gun Ownership')
 plt.legend(['No','Yes'])
 plt.title('Figure 15: 100% Stacked Bar Chart of Gun Ownership and Gun Law Support (n=397)', loc='center')
 plt.show()
+
+
+# Q11
+# Stratified Analysis of the mean tvhours, age, and chldidel by degree
+GSS.groupby('degree')[['tvhours', 'age', 'chldidel']].mean()
+# Choosing tvhours since it is the most interesting difference to me
+
+
+# Q12
+# Side-by-Side Boxplot of tvhours stratified by degree
+sns.catplot(data=GSS,
+               x = 'degree',
+               y = 'tvhours',
+               kind = 'box'
+               )
+plt.ylabel('Daily TV Watch Hours')
+plt.title('Figure 16: Side-by-Side Boxplot of Daily TV Watch Hours by Highest Degree Achieved (n=397)')
+plt.show()
+
+
+# Q13
+# Finding various datapoints for tvhours by degree
+# Calculating tvhours IQR by degree
+GSS.groupby('degree')['tvhours'].describe()
+tvQ1 = GSS.groupby('degree')['tvhours'].quantile(0.25)
+tvQ3 = GSS.groupby('degree')['tvhours'].quantile(0.75)
+tvIQR = tvQ3 - tvQ1
+
+# Finding tvhours range by degree
+GSS.groupby('degree')['tvhours'].agg(['min','max', 'median'])
+
+
+# Q14
+# Creating a scatterplot of tvhours by age
+sns.lmplot(data=GSS, x='age',y='tvhours',fit_reg=True)
+plt.ylabel('Daily TV Watch Hours')
+plt.xlabel('Age')
+plt.title('Figure 17: Scatterplot of Daily TV Watch Hours by Age (n=397)', loc='center', fontsize=14)
+plt.tight_layout()
+plt.show()
+
+
+# Q16
+sp.t.interval(0.90, len(GSS['tvhours'])-1, loc=stat.mean(GSS['tvhours']), scale=stat.stdev(GSS['tvhours']))
+sp.t.interval(0.95, len(GSS['tvhours'])-1, loc=stat.mean(GSS['tvhours']), scale=stat.stdev(GSS['tvhours']))
+sp.t.interval(0.99, len(GSS['tvhours'])-1, loc=stat.mean(GSS['tvhours']), scale=stat.stdev(GSS['tvhours']))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
