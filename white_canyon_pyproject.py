@@ -3,14 +3,23 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+from pandas import DataFrame
 from scipy import stats as sp
 import statistics as stat
+from random import random, seed, randint, sample
 
 GSS = pd.read_csv('C:/Users/canyon.white/OneDrive - Convergint/Documents/GitHub/DATA 3010 Python Project/GSSData_PythonProject_Sp2022.csv')
 
 # Q1
 # Descriptive statistics table for the quantitative variables (tvhours, age, chldidel)
-GSS.describe()
+gss_desc_stat_table = GSS.describe()
+# Exporting the descriptive statistics table for clean-up
+gss_desc_stat_table.to_excel('C:/Users/canyon.white/OneDrive - Convergint/Documents/GitHub/DATA 3010 Python Project/gss_desc_stat_table.xlsx')
+# Calculating the mode for each quantitative variable
+GSS.tvhours.mode()
+GSS.age.mode()
+GSS.chldidel.mode()
+
 
 # Q2
 # Histogram of tvhours
@@ -222,17 +231,49 @@ plt.show()
 
 
 # Q16
+# Creating 90%, 95%, and 99% Confidence Intervals for tvhours
 sp.t.interval(0.90, len(GSS['tvhours'])-1, loc=stat.mean(GSS['tvhours']), scale=stat.stdev(GSS['tvhours']))
 sp.t.interval(0.95, len(GSS['tvhours'])-1, loc=stat.mean(GSS['tvhours']), scale=stat.stdev(GSS['tvhours']))
 sp.t.interval(0.99, len(GSS['tvhours'])-1, loc=stat.mean(GSS['tvhours']), scale=stat.stdev(GSS['tvhours']))
 
 
+# Q18
+# function to create AgeRange categorical variable in GSS dataset
+def Age_Range(series):
+    if series < 18 and series >= 0:
+        return "Under 18"
+    elif series >= 18 and series < 25:
+        return "18-24"
+    elif series >= 25 and series < 35:
+        return "25-34"
+    elif series >= 35 and series < 45:
+        return "35-44"
+    elif series >= 45 and series < 55:
+        return "45-54"
+    elif series >= 55 and series < 65:
+        return "55-64"
+    elif series > 65:
+        return "65+"
+
+# applying the function to our dataset
+GSS['AgeRange'] = GSS['age'].apply(Age_Range)
+# checking data has been created
+GSS.head()
+GSS.AgeRange.value_counts()
 
 
+# Q20
+# Creating Stratified analysis of the mean of tv hours and chldidel by AgeRange
+GSS.groupby('AgeRange')[['tvhours', 'chldidel']].mean()
 
 
-
-
+# Q21
+# Creating 30 random sample observations from GSS
+from random import sample
+seed(2001)
+samplelist = sample(range(1,397), 30)
+gss_sample1 = GSS.iloc[samplelist]
+gss_sample1.to_csv('C:/Users/canyon.white/OneDrive - Convergint/Documents/GitHub/DATA 3010 Python Project/white_canyon_gss_sample1.csv')
 
 
 
