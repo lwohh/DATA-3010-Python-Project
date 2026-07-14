@@ -3,7 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-from pandas import DataFrame
 from scipy import stats as sp
 import statistics as stat
 from random import random, seed, randint, sample
@@ -48,16 +47,16 @@ plt.ylabel('Age')
 plt.title('Figure 4: Box Plot of Age')
 plt.show()
 
-
 # Histogram of chldidel
-plt.hist(GSS.chldidel, edgecolor="black")
+plt.hist(GSS['chldidel'], bins=8, edgecolor="black")
 plt.xlabel('Ideal Number of Children')
 plt.ylabel('Frequency')
 plt.title('Figure 5: Histogram of Ideal Number of Children')
 plt.show()
 
 # Boxplot of chldidel
-plt.boxplot(GSS.chldidel)
+plt.boxplot(GSS['chldidel'])
+plt.ylabel('Ideal Number of Children')
 plt.ylabel('Ideal Number of Children')
 plt.title('Figure 6: Box Plot of Ideal Number of Children')
 plt.show()
