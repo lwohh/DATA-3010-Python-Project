@@ -7,6 +7,7 @@ from scipy import stats as sp
 import statistics as stat
 from random import random, seed, randint, sample
 
+# Reading dataset into Python
 GSS = pd.read_csv('C:/Users/canyon.white/OneDrive - Convergint/Documents/GitHub/DATA 3010 Python Project/GSSData_PythonProject_Sp2022.csv')
 
 # Q1
@@ -14,51 +15,54 @@ GSS = pd.read_csv('C:/Users/canyon.white/OneDrive - Convergint/Documents/GitHub/
 gss_desc_stat_table = GSS.describe()
 # Exporting the descriptive statistics table for clean-up
 gss_desc_stat_table.to_excel('C:/Users/canyon.white/OneDrive - Convergint/Documents/GitHub/DATA 3010 Python Project/gss_desc_stat_table.xlsx')
-# Calculating the mode for each quantitative variable
+# Calculating the median & mode for each quantitative variable
 GSS.tvhours.mode()
+GSS.tvhours.median()
 GSS.age.mode()
+GSS.age.median()
 GSS.chldidel.mode()
+GSS.chldidel.median()
 
 
 # Q2
 # Histogram of tvhours
 plt.hist(GSS.tvhours, edgecolor="black")
-plt.xlabel('Hours Watched Per Day')
-plt.ylabel('Frequency')
-plt.title('Figure 1: Histogram of Hours TV Watched Per Day')
+plt.xlabel('Hours Watched Per Day', fontsize=20)
+plt.ylabel('Frequency', fontsize=20)
+plt.title('Figure 1: Histogram of Hours TV Watched Per Day', fontsize=20)
 plt.show()
 
 # Boxplot of tvhours
 plt.boxplot(GSS.tvhours)
-plt.ylabel('Hours Watched Per Day')
-plt.title('Figure 2: Box Plot of Hours TV Watched Per Day')
+plt.ylabel('Hours Watched Per Day', fontsize=20)
+plt.title('Figure 2: Box Plot of Hours TV Watched Per Day', fontsize=20)
 plt.show()
 
 # Histogram of age
 plt.hist(GSS.age, edgecolor="black")
-plt.xlabel('Age')
-plt.ylabel('Frequency')
-plt.title('Figure 3: Histogram of Age')
+plt.xlabel('Age', fontsize=20)
+plt.ylabel('Frequency', fontsize=20)
+plt.title('Figure 3: Histogram of Age', fontsize=20)
 plt.show()
 
 # Boxplot of age
 plt.boxplot(GSS.age)
-plt.ylabel('Age')
-plt.title('Figure 4: Box Plot of Age')
+plt.ylabel('Age', fontsize=20)
+plt.title('Figure 4: Box Plot of Age', fontsize=20)
 plt.show()
 
 # Histogram of chldidel
 plt.hist(GSS['chldidel'], bins=8, edgecolor="black")
-plt.xlabel('Ideal Number of Children')
-plt.ylabel('Frequency')
-plt.title('Figure 5: Histogram of Ideal Number of Children')
+plt.xlabel('Ideal Number of Children', fontsize=20)
+plt.ylabel('Frequency', fontsize=20)
+plt.title('Figure 5: Histogram of Ideal Number of Children', fontsize=20)
 plt.show()
 
 # Boxplot of chldidel
 plt.boxplot(GSS['chldidel'])
-plt.ylabel('Ideal Number of Children')
-plt.ylabel('Ideal Number of Children')
-plt.title('Figure 6: Box Plot of Ideal Number of Children')
+plt.ylabel('Ideal Number of Children', fontsize=20)
+plt.ylabel('Ideal Number of Children', fontsize=20)
+plt.title('Figure 6: Box Plot of Ideal Number of Children', fontsize=20)
 plt.show()
 
 
@@ -88,50 +92,50 @@ round(cap_table/cap_table.sum()*100, 2)
 # Q5
 # Pie Chart of degree
 deg_colors = ("red", "blue", "green", "yellow", "purple")
-plt.pie(GSS.degree.value_counts(), colors=deg_colors, autopct='%1.1f%%')
-plt.legend(['HighSchool','NotHs','Bachelor','Graduate','JunColl'])
-plt.title('Figure 7: Pie Chart of Highest Degree Achieved (n=397)', loc='center')
+plt.pie(GSS.degree.value_counts(), colors=deg_colors, autopct='%1.1f%%', textprops={'fontsize':20})
+plt.legend(['HighSchool','NotHs','Bachelor','Graduate','JunColl'], fontsize=12)
+plt.title('Figure 7: Pie Chart of Highest Degree Achieved (n=397)', loc='center', fontsize=20)
 plt.show()
 
 # Bar Chart of degree
 deg_name = ['Bachelor','Graduate','HighSchool','JunColl','NotHs']
 deg_freq = [52,30,231,28,56]
 plt.bar(deg_name, deg_freq, color='green')
-plt.xlabel('Degree')
-plt.ylabel('Frequency')
-plt.title('Figure 8: Bar Chart of Highest Degree Achieved (n=397)', loc='center')
+plt.xlabel('Degree', fontsize=20)
+plt.ylabel('Frequency', fontsize=20)
+plt.title('Figure 8: Bar Chart of Highest Degree Achieved (n=397)', loc='center', fontsize=20)
 plt.show()
 
 # Pie Chart of polparty
 pol_colors = ('blue','yellow','red','green')
-plt.pie(GSS.polparty.value_counts(), colors=pol_colors, autopct='%1.1f%%')
-plt.legend(['Democrat','Independent','Republican','Other'])
-plt.title('Figure 9: Pie Chart of Political Party Affiliation (n=397)', loc='center')
+plt.pie(GSS.polparty.value_counts(), colors=pol_colors, autopct='%1.1f%%', textprops={'fontsize':20})
+plt.legend(['Democrat','Independent','Republican','Other'], fontsize=12)
+plt.title('Figure 9: Pie Chart of Political Party Affiliation (n=397)', loc='center', fontsize=20)
 plt.show()
 
 # Bar Chart of polparty
 pol_name = ['Democrat','Independent','Other','Republican']
 pol_freq = [139,137,8,113]
 plt.bar(pol_name, pol_freq, color='green')
-plt.xlabel('Political Party')
-plt.ylabel('Frequency')
-plt.title('Figure 10: Bar Chart of Political Party Affiliation (n=397)', loc='center')
+plt.xlabel('Political Party', fontsize=20)
+plt.ylabel('Frequency', fontsize=20)
+plt.title('Figure 10: Bar Chart of Political Party Affiliation (n=397)', loc='center', fontsize=20)
 plt.show()
 
 # Pie Chart of cappun
 cap_colors = ('blue','red')
-plt.pie(GSS.cappun.value_counts(), colors=cap_colors, autopct='%1.1f%%')
-plt.legend(['Favor','Oppose'])
-plt.title('Figure 11: Pie Chart of Opinion on Capital Punishment (n=397)', loc='center')
+plt.pie(GSS.cappun.value_counts(), colors=cap_colors, autopct='%1.1f%%', textprops={'fontsize':20})
+plt.legend(['Favor','Oppose'], fontsize=12)
+plt.title('Figure 11: Pie Chart of Opinion on Capital Punishment (n=397)', loc='center', fontsize=20)
 plt.show()
 
 # Bar Chart of cappun
 cap_name = ['Favor','Oppose']
 cap_freq = [294,103]
 plt.bar(cap_name, cap_freq, color='green')
-plt.xlabel('Opinion')
-plt.ylabel('Frequency')
-plt.title('Figure 12: Bar Chart of Opinion on Capital Punishment (n=397)', loc='center')
+plt.xlabel('Opinion', fontsize=20)
+plt.ylabel('Frequency', fontsize=20)
+plt.title('Figure 12: Bar Chart of Opinion on Capital Punishment (n=397)', loc='center', fontsize=20)
 plt.show()
 
 
@@ -151,10 +155,10 @@ ind = np.arange(2)
 width = 0.35
 plt.bar(ind, bars1, width, label='No')
 plt.bar(ind + width, bars2, width, label='Yes')
-plt.ylabel('Frequency')
-plt.title('Figure 13: Side by Side Bar Plot of Votes by Gun Ownership and Gun Law Support (n=397)')
+plt.ylabel('Frequency', fontsize=20)
+plt.title('Figure 13: Side by Side Bar Plot of Votes by Gun Ownership and Gun Law Support (n=397)', fontsize=20)
 plt.xticks(ind + width / 2, ('No','Yes'))
-plt.legend(['Favor', 'Oppose'],loc='best')
+plt.legend(['Favor', 'Oppose'],loc='best', fontsize=16)
 plt.show()
 
 # Stacked Bar Chart of owngun and gunlaw
@@ -164,28 +168,28 @@ names = ['No','Yes']
 barWidth = 0.98
 plt.bar(r, bars1, color='#7f6d5f', edgecolor='white', width=barWidth)
 plt.bar(r, bars2, bottom=bars1, color='#557f2d', edgecolor='white', width=barWidth)
-plt.ylabel('Frequency')
+plt.ylabel('Frequency', fontsize=20)
 plt.xticks(r, names, fontweight='bold')
 plt.ylim([0,275])
-plt.xlabel('Gun Ownership')
-plt.legend(['Favor','Oppose'])
-plt.title('Figure 14: Stacked Bar Chart of Gun Ownership and Gun Law Support (n=397)', loc='center')
+plt.xlabel('Gun Ownership', fontsize=20)
+plt.legend(['Favor','Oppose'], fontsize=16)
+plt.title('Figure 14: Stacked Bar Chart of Gun Ownership and Gun Law Support (n=397)', loc='center', fontsize=20)
 plt.show()
 
 # 100% Stacked Bar Chart of owngun and gunlaw
 own_law_table/own_law_table.sum()*100
-bars3 = [70.33, 38.57]
-bars4 = [29.67, 61.43]
+bars3 = [10.5, 30.7]
+bars4 = [89.5, 69.3]
 bars34 = np.add(bars3, bars4).tolist()
-names2 = ['Favor','Oppose']
+names2 = ['No','Yes']
 plt.bar(r, bars3, color='#7f6d5f', edgecolor='white', width=barWidth)
 plt.bar(r, bars4, bottom=bars3, color='#557f2d', edgecolor='white', width=barWidth)
-plt.ylabel('Percentage')
+plt.ylabel('Percentage', fontsize=20)
 plt.xticks(r, names2, fontweight='bold')
 plt.ylim([0,100])
-plt.xlabel('Gun Ownership')
-plt.legend(['No','Yes'])
-plt.title('Figure 15: 100% Stacked Bar Chart of Gun Ownership and Gun Law Support (n=397)', loc='center')
+plt.xlabel('Gun Ownership', fontsize=20)
+plt.legend(['Oppose','Favor'], fontsize=16)
+plt.title('Figure 15: 100% Stacked Bar Chart of Gun Ownership and Gun Law Support (n=397)', loc='center', fontsize=20)
 plt.show()
 
 
@@ -202,8 +206,8 @@ sns.catplot(data=GSS,
                y = 'tvhours',
                kind = 'box'
                )
-plt.ylabel('Daily TV Watch Hours')
-plt.title('Figure 16: Side-by-Side Boxplot of Daily TV Watch Hours by Highest Degree Achieved (n=397)')
+plt.ylabel('Daily TV Watch Hours', fontsize=20)
+plt.title('Figure 16: Side-by-Side Boxplot of Daily TV Watch Hours by Highest Degree Achieved (n=397)', fontsize=20)
 plt.show()
 
 
@@ -222,9 +226,9 @@ GSS.groupby('degree')['tvhours'].agg(['min','max', 'median'])
 # Q14
 # Creating a scatterplot of tvhours by age
 sns.lmplot(data=GSS, x='age',y='tvhours',fit_reg=True)
-plt.ylabel('Daily TV Watch Hours')
-plt.xlabel('Age')
-plt.title('Figure 17: Scatterplot of Daily TV Watch Hours by Age (n=397)', loc='center', fontsize=14)
+plt.ylabel('Daily TV Watch Hours', fontsize=20)
+plt.xlabel('Age', fontsize=20)
+plt.title('Figure 17: Scatterplot of Daily TV Watch Hours by Age (n=397)', loc='center', fontsize=20)
 plt.tight_layout()
 plt.show()
 
