@@ -204,7 +204,8 @@ GSS.groupby('degree')[['tvhours', 'age', 'chldidel']].mean()
 sns.catplot(data=GSS,
                x = 'degree',
                y = 'tvhours',
-               kind = 'box'
+               kind = 'box',
+               showmeans=True
                )
 plt.ylabel('Daily TV Watch Hours', fontsize=20)
 plt.title('Figure 16: Side-by-Side Boxplot of Daily TV Watch Hours by Highest Degree Achieved (n=397)', fontsize=20)
